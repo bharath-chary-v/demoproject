@@ -25,7 +25,7 @@ const PaymentScreen = ({ history }) => {
 
   return (
     <FormContainer>
-      <CheckoutSteps step1 step2 step3 />
+      <CheckoutSteps step1 step2 />
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group>
@@ -33,10 +33,10 @@ const PaymentScreen = ({ history }) => {
           <Col>
             <Form.Check
               type='radio'
-              label='PayPal or Credit Card'
+              label=' Credit'
               id='PayPal'
               name='paymentMethod'
-              value='PayPal'
+              value='Credit'
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>

@@ -35,16 +35,16 @@ const OrderScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  if (!loading) {
-    //   Calculate prices
-    const addDecimals = (num) => {
-      return (Math.round(num * 100) / 100).toFixed(2)
-    }
+  //  if (!loading) {
+  //   //   Calculate prices
+  //   const addDecimals = (num) => {
+  //     return (Math.round(num * 100) / 100).toFixed(2)
+  //    }
 
-    order.itemsPrice = addDecimals(
-      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    )
-  }
+  //    order.itemsPrice = addDecimals(
+  //     order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  //   )
+   //}
 
   useEffect(() => {
     if (!userInfo) {
@@ -104,7 +104,7 @@ const OrderScreen = ({ match, history }) => {
                 <strong>Email: </strong>{' '}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
-              <p>
+              {/* <p>
                 <strong>Address:</strong>
                 {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
                 {order.shippingAddress.postalCode},{' '}
@@ -116,10 +116,10 @@ const OrderScreen = ({ match, history }) => {
                 </Message>
               ) : (
                 <Message variant='danger'>Not Delivered</Message>
-              )}
+              )} */}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            {/* <ListGroup.Item>
               <h2>Payment Method</h2>
               <p>
                 <strong>Method: </strong>
@@ -130,7 +130,7 @@ const OrderScreen = ({ match, history }) => {
               ) : (
                 <Message variant='danger'>Not Paid</Message>
               )}
-            </ListGroup.Item>
+            </ListGroup.Item> */}
 
             <ListGroup.Item>
               <h2>Order Items</h2>

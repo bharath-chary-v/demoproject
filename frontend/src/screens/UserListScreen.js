@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
+import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -17,6 +18,9 @@ const UserListScreen = ({ history }) => {
 
   const userDelete = useSelector((state) => state.userDelete)
   const { success: successDelete } = userDelete
+  
+
+  
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -84,6 +88,14 @@ const UserListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
+      <Row className='py-3'>
+        <Col>
+          New Customer?{' '}
+          <Link to={ '/register'}>
+            Register
+          </Link>
+        </Col>
+      </Row>
     </>
   )
 }
