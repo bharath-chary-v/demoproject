@@ -95,10 +95,8 @@ const UserEditScreen = ({ match, history }) => {
               Update
             </Button>
           </Form>
-          
         )}
       </FormContainer>
-      
     </>
   )
 }

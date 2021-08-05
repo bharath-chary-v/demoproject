@@ -19,7 +19,13 @@ const RegisterScreen = ({ location, history }) => {
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, error, userInfo } = userRegister
 
- 
+  const redirect = location.search ? location.search.split('=')[1] : '/'
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect)
+    }
+  }, [history, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -82,14 +88,14 @@ const RegisterScreen = ({ location, history }) => {
         </Button>
       </Form>
 
-      {/* <Row className='py-3'>
+      <Row className='py-3'>
         <Col>
           Have an Account?{' '}
           <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
             Login
           </Link>
         </Col>
-      </Row> */}
+      </Row>
     </FormContainer>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,42 +8,26 @@ import { listOrders } from '../actions/orderActions'
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch()
-  const [isPaid, setIsPaid] = useState(false);
-  const toggleSwitch = () => setIsPaid(previousState => !previousState);
+
   const orderList = useSelector((state) => state.orderList)
   const { loading, error, orders } = orderList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
-  
-  // const orderDelete = useSelector((state) => state.orderDelete)
-  // const {
-  //   loading:loadingDelete,
-  //   error:errorDelete,
-  //   success:successDelete
-  //   } = orderDelete
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders())
     } else {
       history.push('/login')
     }
-  }, [dispatch, history, userInfo, isPaid])
-  
-  // const deleteHandler = (id) => {
-  //   if (window.confirm('Are you sure')) {
-  //     dispatch(deleteOrder(id))
-  //   }
-  // }
+  }, [dispatch, history, userInfo])
 
   return (
     <>
       <h1>Orders</h1>
       {loading ? (
         <Loader />
-        // {loadingDelete && <Loader />}
-        // {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
-        
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
@@ -54,8 +38,8 @@ const OrderListScreen = ({ history }) => {
               <th>USER</th>
               <th>DATE</th>
               <th>TOTAL</th>
-              <th>Status</th>
-              <th></th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
               <th></th>
             </tr>
           </thead>
@@ -85,13 +69,6 @@ const OrderListScreen = ({ history }) => {
                     <Button variant='light' className='btn-sm'>
                       Details
                     </Button>
-                    {/* <Button
-                      variant='danger'
-                      className='btn-sm'
-                      // onClick={() => deleteHandler(order._id)}
-                    >
-                      <i className='fas fa-trash'></i>
-                    </Button> */}
                   </LinkContainer>
                 </td>
               </tr>
